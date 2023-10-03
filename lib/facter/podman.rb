@@ -20,7 +20,8 @@ Facter.add(:podman, type: :aggregate) do
   confine { Facter.value(:podman_version) }
 
   chunk(:version) do
-    { 'version' => Facter.value(:podman_version).dig('Client', 'Version') }
+    #{ 'version' => Facter.value(:podman_version).dig('Client', 'Version') }
+    { 'version' => Facter.value(:podman_version)['Client']['Version'] }
   end
 
   chunk(:socket_root) do
